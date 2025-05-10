@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+"""
+Added get_hyper() to the server class.
+"""
 import csv
 import math
 from typing import List, Tuple
@@ -22,7 +26,8 @@ class Server:
 
         return self.__dataset
 
-    def index_range(self, page, page_size) -> Tuple:
+    @staticmethod
+    def index_range(page, page_size) -> Tuple:
         """
         Helper function for pagination tuple.
         """
