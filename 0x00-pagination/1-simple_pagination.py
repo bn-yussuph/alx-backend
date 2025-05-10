@@ -22,7 +22,8 @@ class Server:
 
         return self.__dataset
 
-    def index_range(self, page, page_size) -> Tuple:
+    @staticmethod
+    def index_range(page: int, page_size: int) -> Tuple[int, int]:
         """
         Helper function for pagination tuple.
         """
@@ -46,3 +47,4 @@ class Server:
         assert page_size > 0
         rng = self.index_range(int(page), int(page_size))
         return self.dataset()[rng[0]: rng[1]]
+
