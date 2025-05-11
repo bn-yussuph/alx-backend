@@ -3,7 +3,6 @@
 Implements get_page() in the server class.
 """
 import csv
-import math
 from typing import List, Tuple
 
 
@@ -51,4 +50,3 @@ class Server:
         assert page_size > 0
         rng = self.index_range(int(page), int(page_size))
         return self.dataset()[rng[0]: rng[1]]
-
