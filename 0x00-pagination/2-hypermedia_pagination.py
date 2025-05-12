@@ -54,14 +54,14 @@ class Server:
 
     def get_hyper(self, page: int = 1,
                     page_size: int = 10) -> Dict[str, Union[int, List[List[str]], NoneType]]:
-        """Get a page from the dataset
+        """a function to return hypermedia page
 
         Args:
-            page (int, optional): page required. Defaults to 1.
+            page (int, optional): page number. Defaults to 1.
             page_size (int, optional): page size. Defaults to 10.
 
         Returns:
-            List[List]: a specific page from the dataset
+            Dict[str, Union[int, List[List[str]], NoneType]]: returns a hypermedia data
         """
         assert type(page) == int
         assert page > 0
