@@ -72,7 +72,7 @@ class Server:
         assert isinstance(page_size, int)
         assert page_size > 0
         rng = self.index_range(int(page), int(page_size))
-        data = self.dataset()[rng[0]: rng[1]]
+        data = self.get_page(page,page_size)
         total_pages = len(self.dataset()) // page_size
         if len(self.dataset()) % page_size != 0:
             total_pages += 1
