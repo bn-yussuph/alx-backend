@@ -86,7 +86,7 @@ class Server:
             next_page = page + 1
 
         res = {
-            'page_size': page_size,
+            'page_size': len(data),
             'page': page,
             'data': data,
             'next_page': next_page,
