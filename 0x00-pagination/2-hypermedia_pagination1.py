@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Implements get_page() in the server class.
+Added get_hyper() to the server class.
 """
 import csv
 from types import NoneType
@@ -27,7 +27,7 @@ class Server:
         return self.__dataset
 
     @staticmethod
-    def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    def index_range(page, page_size) -> Tuple[int, int]:
         """
         Helper function for pagination tuple.
         """
