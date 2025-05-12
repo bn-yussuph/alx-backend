@@ -3,7 +3,7 @@
 Added get_hyper() to the server class.
 """
 import csv
-from typing import List, Tuple
+from typing import List, Tuple, Union
 
 
 class Server:
@@ -51,7 +51,7 @@ class Server:
         rng = self.index_range(int(page), int(page_size))
         return self.dataset()[rng[0]: rng[1]]
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict[str, Union[int, List[List], None]]:
         """Get a page from the dataset
 
         Args:
