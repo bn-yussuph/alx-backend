@@ -45,15 +45,19 @@ class Server:
         Returns:
             List[List]: a specific page from the dataset
         """
-        assert type(page) == int
+        assert isinstance(page, int)
         assert page > 0
-        assert type(page_size) == int
+        assert isinstance(page_size, int)
         assert page_size > 0
         rng = self.index_range(int(page), int(page_size))
         return self.dataset()[rng[0]: rng[1]]
 
-    def get_hyper(self, page: int = 1,
-                    page_size: int = 10) -> Dict[str, Union[int, List[List[str]], NoneType]]:
+    def get_hyper(self,
+                  page: int = 1,
+                  page_size: int = 10) -> Dict[str,
+                                               Union[int,
+                                                     List[List[str]],
+                                                     NoneType]]:
         """a function to return hypermedia page
 
         Args:
@@ -63,9 +67,9 @@ class Server:
         Returns:
             Dict[str, Union[int, List[List[str]], NoneType]]: returns a hypermedia data
         """
-        assert type(page) == int
+        assert isinstance(page, int)
         assert page > 0
-        assert type(page_size) == int
+        assert isinstance(page_size, int)
         assert page_size > 0
         rng = self.index_range(int(page), int(page_size))
         data = self.dataset()[rng[0]: rng[1]]
@@ -81,6 +85,11 @@ class Server:
         if page < total_pages:
             next_page = page + 1
 
-        res = {'page_size': page_size, 'page': page, 'data': data,
-                'next_page': next_page, 'prev_page': prev_page, 'total_pages': total_pages}
+        res = {
+            'page_size': page_size,
+            'page': page,
+            'data': data,
+            'next_page': next_page,
+            'prev_page': prev_page,
+            'total_pages': total_pages}
         return res
