@@ -56,8 +56,8 @@ class Server:
                     page: int = 1,
                     page_size: int = 10) -> Dict[str,
                                             Union[int,
-                                                    List[List[str]],
-                                                    NoneType]]:
+                                                    List[List],
+                                                    None]]:
         """a function to return hypermedia page
 
         Args:
@@ -72,7 +72,7 @@ class Server:
         assert page > 0
         assert isinstance(page_size, int)
         assert page_size > 0
-        data = self.get_page(page,page_size)
+        data = self.get_page(page, page_size)
         total_pages = len(self.dataset()) // page_size
         if len(self.dataset()) % page_size != 0:
             total_pages += 1
