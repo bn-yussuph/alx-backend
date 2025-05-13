@@ -53,8 +53,8 @@ class Server:
         return self.dataset()[rng[0]: rng[1]]
 
     def get_hyper(self,
-                    page: int,
-                    page_size: int) -> Dict[str,
+                    page: int = 1,
+                    page_size: int = 10) -> Dict[str,
                                             Union[int,
                                                     List[List[str]],
                                                     NoneType]]:
@@ -65,7 +65,8 @@ class Server:
             page_size (int, optional): page size. Defaults to 10.
 
         Returns:
-            Dict[str, Union[int, List[List[str]], NoneType]]: returns a hypermedia data
+            Dict[str, Union[int, List[List[str]], NoneType]]: returns
+                                                    a hypermedia data
         """
         assert isinstance(page, int)
         assert page > 0
