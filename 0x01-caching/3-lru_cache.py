@@ -25,11 +25,11 @@ class LRUCache(BaseCaching):
         """ Add an item in the cache
         """
         if key is not None and item is not None:
-            keyOut = self._balance(key)
+            key_out = self._balance(key)
             with self.__rlock:
                 self.cache_data.update({key: item})
-            if keyOut is not None:
-                print('DISCARD: {}'.format(keyOut))
+            if key_out is not None:
+                print('DISCARD: {}'.format(key_out))
 
     def get(self, key):
         """ Get an item by key
@@ -40,17 +40,17 @@ class LRUCache(BaseCaching):
                 self._balance(key)
         return value
 
-    def _balance(self, keyIn):
+    def _balance(self, key_in):
         """ Removes the earliest item from the cache at MAX size
         """
-        keyOut = None
+        key_out = None
         with self.__rlock:
             keysLength = len(self.__keys)
-            if keyIn not in self.__keys:
+            if key_in not in self.__keys:
                 if len(self.cache_data) == BaseCaching.MAX_ITEMS:
-                    keyOut = self.__keys.pop(0)
-                    self.cache_data.pop(keyOut)
+                    key_out = self.__keys.pop(0)
+                    self.cache_data.pop(key_out)
             else:
-                self.__keys.remove(keyIn)
-            self.__keys.insert(keysLength, keyIn)
-        return keyOut
+                self.__keys.remove(key_in)
+            self.__keys.insert(keysLength, key_in)
+        return key_out

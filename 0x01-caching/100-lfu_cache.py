@@ -25,11 +25,11 @@ class LFUCache(BaseCaching):
         """ Add an item in the cache
         """
         if key is not None and item is not None:
-            keyOut = self._balance(key)
+            key_out = self._balance(key)
             with self.__rlock:
                 self.cache_data.update({key: item})
-            if keyOut is not None:
-                print('DISCARD: {}'.format(keyOut))
+            if key_out is not None:
+                print('DISCARD: {}'.format(key_out))
 
     def get(self, key):
         """ Get an item by key
@@ -40,15 +40,15 @@ class LFUCache(BaseCaching):
                 self.__stats[key] += 1
         return value
 
-    def _balance(self, keyIn):
+    def _balance(self, key_in):
         """ Removes the earliest item from the cache at MAX size
         """
-        keyOut = None
+        key_out = None
         with self.__rlock:
-            if keyIn not in self.__stats:
+            if key_in not in self.__stats:
                 if len(self.cache_data) == BaseCaching.MAX_ITEMS:
-                    keyOut = min(self.__stats, key=self.__stats.get)
-                    self.cache_data.pop(keyOut)
-                    self.__stats.pop(keyOut)
-            self.__stats[keyIn] = self.__stats.get(keyIn, 0) + 1
-        return keyOut
+                    key_out = min(self.__stats, key=self.__stats.get)
+                    self.cache_data.pop(key_out)
+                    self.__stats.pop(key_out)
+            self.__stats[key_in] = self.__stats.get(key_in, 0) + 1
+        return key_out
