@@ -28,6 +28,7 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
+@babel.localeselector
 def get_locale() -> str:
     """
     Gets locale from.request
@@ -36,7 +37,7 @@ def get_locale() -> str:
     return locale
 
 @app.route("/", strict_slashes=False)
-def index()-> str:
+def index() -> str:
     """Returns index.html"""
     return render_template("1-index.html")
 
