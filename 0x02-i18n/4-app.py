@@ -34,14 +34,17 @@ def get_locale() -> str:
     Gets locale from.request
     """
     locale = request.args.get('locale','').strip()
-    if locale and local in Config.LANGUAGES:
+    print(locale)
+    if locale and locale in Config.LANGUAGES:
+        print(locale)
         return locale
     return request.accept_languages.best_match(app.Config['LANGUAGES'])
+
 
 @app.route("/", strict_slashes=False)
 def index() -> str:
     """Returns index.html"""
-    return render_template("1-index.html")
+    return render_template("4-index.html")
 
 
 if __name__ == "__main__":
