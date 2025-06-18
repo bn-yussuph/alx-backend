@@ -1,49 +1,49 @@
 const {
-    defineConfig,
-} = require("eslint/config");
+  defineConfig,
+} = require('eslint/config');
 
-const globals = require("globals");
-const jest = require("eslint-plugin-jest");
-const js = require("@eslint/js");
+const globals = require('globals');
+const jest = require('eslint-plugin-jest');
+const js = require('@eslint/js');
 
 const {
-    FlatCompat,
-} = require("@eslint/eslintrc");
+  FlatCompat,
+} = require('@eslint/eslintrc');
 
 const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all,
 });
 
 module.exports = defineConfig([{
-    languageOptions: {
-        globals: {
-            ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, "off"])),
-            ...globals.jest,
-            Atomics: "readonly",
-            SharedArrayBuffer: "readonly",
-        },
-
-        ecmaVersion: 2018,
-        sourceType: "module",
-        parserOptions: {},
+  languageOptions: {
+    globals: {
+      ...Object.fromEntries(Object.entries(globals.browser).map(([key]) => [key, 'off'])),
+      ...globals.jest,
+      Atomics: 'readonly',
+      SharedArrayBuffer: 'readonly',
     },
 
-    extends: compat.extends("airbnb-base", "plugin:jest/all"),
+    ecmaVersion: 2018,
+    sourceType: 'module',
+    parserOptions: {},
+  },
 
-    plugins: {
-        jest,
-    },
+  extends: compat.extends('airbnb-base', 'plugin:jest/all'),
 
-    rules: {
-        "max-classes-per-file": "off",
-        "no-underscore-dangle": "off",
-        "no-console": "off",
-        "no-shadow": "off",
-        "no-restricted-syntax": ["error", "LabeledStatement", "WithStatement"],
-    },
+  plugins: {
+    jest,
+  },
+
+  rules: {
+    'max-classes-per-file': 'off',
+    'no-underscore-dangle': 'off',
+    'no-console': 'off',
+    'no-shadow': 'off',
+    'no-restricted-syntax': ['error', 'LabeledStatement', 'WithStatement'],
+  },
 }, {
-    files: ["**/*.js"],
-    ignores: ["**/babel.config.js"],
+  files: ['**/*.js'],
+  ignores: ['**/babel.config.js'],
 }]);
